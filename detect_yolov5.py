@@ -12,8 +12,8 @@ if __name__ == '__main__':
     # model = torch.hub.load('ultralytics/yolov5', 'custom', path='./weights/body1500_yolov5s6.pt')
     model.classes = [0]
     classes = model.names
-    cap = cv2.VideoCapture(0) # use the current device's default camera (webcam on laptops) as video resource
-    # cap = cv2.VideoCapture('./videos/people_walking.mp4') # capture a video in local directory
+    # cap = cv2.VideoCapture(0) # use the current device's default camera (webcam on laptops) as video resource
+    cap = cv2.VideoCapture('./videos/people_walking.mp4') # capture a video in local directory
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     model.to(device)
 
@@ -35,7 +35,7 @@ if __name__ == '__main__':
             row = cord[i]
             if row[4] >= 0.2:
                 x1, y1, x2, y2 = int(row[0]*x_shape), int(row[1]*y_shape), int(row[2]*x_shape), int(row[3]*y_shape)
-                bgr = (0, 140, 255)
+                bgr = (0, 0, 255)
                 cv2.rectangle(frame, (x1, y1), (x2, y2), bgr, 1)
                 cv2.putText(frame, classes[int(labels[i])], (x1, y1), cv2.FONT_HERSHEY_SIMPLEX, 0.5, bgr, 1)
 
