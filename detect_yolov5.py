@@ -1,7 +1,7 @@
 import torch
 import numpy as np
 import cv2
-import pafy
+# import pafy
 from time import time
 
 
@@ -24,7 +24,7 @@ if __name__ == '__main__':
         # Score frames
         frames = [frame]
         results = model(frames)
-        labels, cord = results.xyxyn[0][:, -1].numpy(), results.xyxyn[0][:, :-1].numpy()
+        labels, cord = results.xyxyn[0][:, -1].cpu().numpy(), results.xyxyn[0][:, :-1].cpu().numpy()
         unique, counts = np.unique(labels, return_counts=True)
         print(dict(zip(unique, counts)))
 
