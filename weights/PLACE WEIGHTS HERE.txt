@@ -1,0 +1,2 @@
+place your yolov5 weights in this directory
+crowdhuman_yolov5m
